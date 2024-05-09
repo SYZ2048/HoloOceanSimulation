@@ -10,9 +10,10 @@
 import holoocean
 import matplotlib.pyplot as plt
 import numpy as np
-
+import os
 from KeyboardControl import start_keyboard_listener, parse_keys, pressed_keys
 from SonarDisplayRealtime import SonarDisplay
+from Load_pkl import save_single_pkl
 
 # GET SONAR CONFIG
 scenario = "Dam-HoveringImagingSonar"  # OpenWater-HoveringImagingSonar, PierHarbor-HoveringImagingSonar
@@ -26,10 +27,10 @@ binsR = config['RangeBins']
 binsA = config['AzimuthBins']
 
 # GET PLOT READY
-display = SonarDisplay(azi, minR, maxR, binsR, binsA)
+# display = SonarDisplay(azi, minR, maxR, binsR, binsA)
 
 # 初始化键盘监听
-force = 25
+force = 5
 keyboard_listener = start_keyboard_listener()
 
 # waypoints
@@ -45,6 +46,9 @@ waypoints = np.stack((np.full(z_coords.shape, x_coord),
 num_way_points = waypoints.shape[0]
 
 idx = 0
+output_folder = 'D:\\code_python\\HoloTest\\holoocean\\pillar'
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 # RUN SIMULATION
 
 # with holoocean.make(scenario) as env:   # scenario_cfg=config
@@ -68,15 +72,17 @@ with holoocean.make(scenario) as env:  # scenario_cfg=config
         dist = np.linalg.norm(p - waypoints[idx])
         # print("distance: ", dist)
 
-        if dist < 1e-1:
+        if dist < 1e-1 and 'ImagingSonar' in state:
+            output_path = os.path.join(output_folder, f"{idx}.pkl")
+            save_single_pkl(output_path, state)
+            # display
+            # s = state['ImagingSonar']
+            # display.update_display(s)  # 更新显示
+            # update idx
             idx = (idx + 1) % num_way_points
             print("Going to waypoint ", idx)
 
-        if 'ImagingSonar' in state:
-            s = state['ImagingSonar']
-            display.update_display(s)  # 更新显示
-
 print("Finished Simulation!")
-display.close_display()  # 关闭显示
+# display.close_display()  # 关闭显示
 keyboard_listener.stop()
 # 关闭所有绘图窗口
