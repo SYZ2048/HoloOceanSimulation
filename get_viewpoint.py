@@ -13,6 +13,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
+from pklOperation import load_single_pkl
 
 # 提供 `.pkl` 文件的路径C:\Users\xinruiy\Python_code\holoocean\neusis_data\14deg_planeFull\Data
 pickle_loc = "./neusis_data/14deg_planeFull/Data/"
@@ -29,16 +30,6 @@ ImagingSonar (512, 96)
 t: float
 '''
 
-
-def load_single_pkl(file_path):
-    # file_path = "./neusis_14deg_planeFull/Data/51.pkl"
-    with open(file_path, 'rb') as file:
-        # 反序列化文件，恢复原始对象
-        data = pickle.load(file)
-        # for key in data:
-        #     # print(key)
-        #     print(key, data[key].shape)
-        return data
 
 if __name__ == '__main__':
     camera_positions =[]
