@@ -16,4 +16,4 @@ def save_single_pkl(output_path, object_to_save):
     # 将字典保存为 .pkl 文件
     with open(output_path, 'wb') as f:  # 'wb' 模式以二进制写入
         pickle.dump(object_to_save, f)
-    # print(f"Dictionary has been successfully saved to {output_path}.")
+    print(f"Dictionary has been successfully saved to {output_path}.")

@@ -71,7 +71,7 @@
                     "sensor_type": "ImagingSonar",
                     "socket": "SonarSocket",
                     "Hz": 10,
-                    "rotation": [0, 45, 0],
+                    "rotation": [0, 30, 0],
                     "configuration": {
                         "RangeBins": 512,
                         "AzimuthBins": 96,
@@ -91,8 +91,8 @@
                 }
             ],
             "control_scheme": 0,
-            "location": [0, 0, -30],
-            "rotation": [0.0, 0.0, 130.0]
+            "location": [0, 0, -37],
+            "rotation": [0.0, 0.0, 270.0]
         }
     ],
 
