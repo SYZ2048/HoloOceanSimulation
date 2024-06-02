@@ -32,7 +32,19 @@ setting the “Collision Complexity” option in the details section of the stat
 
 
 
+### 购买飞机素材库
+
+Commercial Long-Range Aircraft
+
+
+
 ### Issue
+
+##### 在use complex collision as simple设置下，teapot和cube有半个表面无法成像
+
+暂时未解决，换成了一个飞机
+
+
 
 ##### 水体环境设置
 
@@ -73,3 +85,6 @@ collision mesh可能比物体本身的建模粗糙的多，所以需要设置Col
 https://github.com/byu-holoocean/HoloOcean/issues/33
 
 如果capacity不足，可以预先生成octreehttps://holoocean.readthedocs.io/en/master/usage/octree.html#octree-generation
+
+
+
