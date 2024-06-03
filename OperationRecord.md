@@ -1,5 +1,21 @@
 # Operation Record
 
+```
+'''data keys: 
+OrientationSensor (3, 3)
+LocationSensor (3,)
+PoseSensor (4, 4)
+VelocitySensor (3,)
+IMUSensor (4, 3)
+DVLSensor (7,)
+DepthSensor (1,)
+ImagingSonar (512, 96)
+t: float
+'''
+```
+
+
+
 ##### 解压pak
 
 ```
@@ -35,6 +51,66 @@ setting the “Collision Complexity” option in the details section of the stat
 ### 购买飞机素材库
 
 Commercial Long-Range Aircraft
+
+
+
+### 数据采集
+
+##### 竖着的飞机
+
+左机翼[9.7, -2.5,  -37]
+
+右机翼[-9.7, -2.5,  -37]
+
+机头[-0.7 -1.2 -30]
+
+机尾[-1.2 -2.5,  -52]
+
+```
+                                                    90度
+                                                    |
+                                            180 ————|————
+                                                    |
+                                                    |
+【0-300】
+"location": [-1.2, -7, -48], 
+"rotation": [0.0, 0.0, 80.0]	
+【300-600】
+"location": [1.2, -7, -48],		
+"rotation": [0.0, 0.0, 105.0]
+【600-900】
+"location": [0.3, -7, -48],		
+"rotation": [0.0, 0.0, 90.0]
+【900-1400】
+右机翼到左机翼
+"location": [9.7, -7,  -40],
+"rotation": [0.0, 0.0, 90.0]
+【1400
+右机翼到左机翼
+"location": [9.460258, 4.810762, -33.422295],
+"rotation": [0.0, 0.0, 270.0]
+```
+
+
+
+##### 平着的飞机
+
+机头到机尾倒着向上走，机头左侧是x=3(200-500)，机头右侧是x=0(0-200)
+
+```
+            "location": [3, 0, -37],
+            "rotation": [0.0, 0.0, 270.0]
+            
+command = [0.1, 0.1, 0.1, 0.1, -1, -1, -1, -1]
+```
+
+左侧机翼到右侧机翼500-1200
+
+```
+            "location": [13, 3, -37],
+            "rotation": [0.0, 0.0, 180.0]
+手动控制
+```
 
 
 
