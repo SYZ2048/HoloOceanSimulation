@@ -12,7 +12,7 @@
 
 Nerf——放大十倍——旋转到平行——移动
 
-<img src=".\images_Markdown\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
+<img src=".\Images_Markdown\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
 
 用meshlab比对mesh：手动进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
 
