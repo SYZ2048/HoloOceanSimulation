@@ -4,13 +4,31 @@
 
 #### 找到一个量化的指标评估重建性能，论文中用的root mean square (RMS) and mean Hausdorff distance errors (all in meters)
 
-点云比对or mesh比对？
 
-Ground Truth (mesh)【UE4】 --> 导出为mesh【UE4】--> Ground Truth (point cloud) 【CloudCompare】
 
-Nerf (point cloud) 
+**mesh对比**：
 
-需要相同的点云数量和点云对应：但是UE4导出的点云分布非常不均匀，平面上几乎没有点云，用CloudCompare生成密集点云
+Nerf——放大十倍——旋转到平行——移动
+
+<img src="C:\Users\xinruiy\AppData\Roaming\Typora\typora-user-images\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
+
+用meshlab比对mesh：手动进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
+
+结果
+
+```
+Hausdorff Distance computed
+
+Sampled 3250 pts (rng: 0) on ExampleLevel_staticmesh.ply searched closest on 00300228_Mesh_DenoiseManual_10.ply
+
+min : 0.017456 max 544.781006 mean : 62.335575 RMS : 85.735085
+
+Values w.r.t. BBox Diag (9949.872070)
+
+min : 0.000002 max 0.054753 mean : 0.006265 RMS : 0.008617 
+
+Applied filter Hausdorff Distance in 56 msec
+```
 
 
 
@@ -387,3 +405,14 @@ model {
 
 ```
 
+
+
+## 一些尝试：
+
+### 点云比对or mesh比对？
+
+**点云**：Ground Truth (mesh)【UE4】 --> 导出为mesh【UE4】--> Ground Truth (point cloud) 【CloudCompare】
+
+Nerf (point cloud) 
+
+需要相同的点云数量和点云对应：但是UE4导出的点云分布非常不均匀，平面上几乎没有点云，用CloudCompare生成密集点云
