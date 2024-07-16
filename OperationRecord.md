@@ -8,9 +8,11 @@
 
 **mesh对比**：
 
+
+
 Nerf——放大十倍——旋转到平行——移动
 
-<img src="C:\Users\xinruiy\AppData\Roaming\Typora\typora-user-images\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
+<img src=".\images_Markdown\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
 
 用meshlab比对mesh：手动进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
 
@@ -168,7 +170,7 @@ setting the “Collision Complexity” option in the details section of the stat
 
 Commercial Long-Range Aircraft
 
-飞机参数![img](file:///C:\Users\xinruiy\OneDrive - NVIDIA Corporation\Documents\Tencent Files\939765035\nt_qq\nt_data\Pic\2024-07\Ori\f97f480474fe8fd90a9feff45886e407.png)
+飞机参数![img](.\images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
 
 
 
@@ -272,7 +274,7 @@ A：碰撞相关的问题
 
 waterbodylake设置为如下时可以运行，如果选择generate collisions就会报错
 
-<img src="C:\Users\xinruiy\AppData\Roaming\Typora\typora-user-images\image-20240521195252436.png" alt="image-20240521195252436" style="zoom: 33%;" />
+<img src=".\Images_Markdown\image-20240521195252436.png" alt="image-20240521195252436" style="zoom: 33%;" />
 
 ##### 物体的碰撞设置
 
