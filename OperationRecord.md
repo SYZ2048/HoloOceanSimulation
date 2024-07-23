@@ -2,47 +2,58 @@
 
 ### To do
 
-#### 找到一个量化的指标评估重建性能，论文中用的root mean square (RMS) and mean Hausdorff distance errors (all in meters)
-
-
+#### 1. 找到一个量化的指标评估重建性能，论文中用的root mean square (RMS) and mean Hausdorff distance errors (all in meters)
 
 **mesh对比**：
-
-
 
 Nerf——放大十倍——旋转到平行——移动
 
 <img src=".\Images_Markdown\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
 
-用meshlab比对mesh：手动进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
+用meshlab比对mesh：手动选点进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
 
 结果
 
 ```
 Hausdorff Distance computed
-
 Sampled 3250 pts (rng: 0) on ExampleLevel_staticmesh.ply searched closest on 00300228_Mesh_DenoiseManual_10.ply
-
 min : 0.017456 max 544.781006 mean : 62.335575 RMS : 85.735085
-
 Values w.r.t. BBox Diag (9949.872070)
-
 min : 0.000002 max 0.054753 mean : 0.006265 RMS : 0.008617 
-
 Applied filter Hausdorff Distance in 56 msec
 ```
 
 
 
-#### baseline效果改进
+#### 2. baseline效果改进
 
 **增加视角**：在之前建模中错误建模的地方总计增加了100个新的采样点——无法得到任何可靠重建
 
-**训练cfg修改**：
+**手动去噪**：手动去掉了周围的小mesh块
 
-#### 做稀疏视角的网络
+#### 3. 做稀疏视角的网络
 
+随机选择指定数量的视角（800、600、400、300、200）
 
+neusis 结构
+
+```
+\neusis\
+	run_sdf.py
+	helpers.py		生成nerf网络的射线方向和弧线采样点
+	load_data.py
+	MLP.py			定义Network_S_Relu类
+	models\
+		embedder.py
+		fields.py		SDFNetwork
+		renderer.py		NeuSRenderer
+```
+
+<img src=".\Images_Markdown\neusis.jpg" alt="neusis" style="zoom:50%;" />
+
+特征提取网络：ResNet34，
+
+<img src=".\Images_Markdown\image-20240414201944793.png" alt="image-20240414201944793" style="zoom:50%;" />
 
 ### Train 
 
@@ -51,20 +62,6 @@ Applied filter Hausdorff Distance in 56 msec
 ##### conf文件 
 
 完整版见[HoloOceanSimulation/train_cfg/plane_vertical_raw.conf at master · SYZ2048/HoloOceanSimulation (github.com)](https://github.com/SYZ2048/HoloOceanSimulation/blob/master/train_cfg/plane_vertical_raw.conf)
-
-```
-mesh { 
-    object_bbox_min = [-15, -6, -45]  
-    object_bbox_max = [15, 6, -25]
-    x_max = 15,
-    x_min = -15,
-    y_max = 6,
-    y_min = -6,
-    z_max = -25,
-    z_min = -45,
-    level_set = 0
-}
-```
 
 
 
@@ -83,7 +80,7 @@ unzip xxx.zip
 # 在neusis/conf下添加新的conf
 
 cd ~/neusis
-python run_sdf.py --conf confs/plane_vertical_raw.conf > view.log
+python run_sdf.py --conf confs/plane_vertical_raw.conf > ./experiments/plane_vertical_raw/view.log
 ```
 
 
@@ -92,12 +89,76 @@ python run_sdf.py --conf confs/plane_vertical_raw.conf > view.log
 
 800view: b97811803c-f1e4a99a
 
+```
+mesh { 
+    object_bbox_min = [-15, -6, -45]  
+    object_bbox_max = [15, 3, -20]
+    x_max = 15,
+    x_min = -15,
+    y_max = 3,
+    y_min = -6,
+    z_max = -20,
+    z_min = -45,
+    level_set = 0
+}
+```
+
+600view: a95f1182e8-da9d2502
+
+```
+mesh { 
+    object_bbox_min = [-15, -6, -45]  
+    object_bbox_max = [15, 6, -23]
+    x_max = 15,
+    x_min = -15,
+    y_max = 6,
+    y_min = -5,
+    z_max = 20,
+    z_min = -45,
+    level_set = 0
+}	# 飞机的头尾被截掉了
+```
+
+400view: a95f1182e8-da9d2502
+
+```
+mesh { 
+    object_bbox_min = [-15, -6, -60]  
+    object_bbox_max = [15, 3, 0]
+    x_max = 15,
+    x_min = -15,
+    y_max = 3,
+    y_min = -6,
+    z_max = 0,
+    z_min = -60,
+    level_set = 0
+}
+```
+
+300view: 35e74cb2b9-34f0f2de
+
+```
+mesh { 
+    object_bbox_min = [-15, -6, -60]  
+    object_bbox_max = [15, 3, 10]
+    x_max = 15,
+    x_min = -15,
+    y_max = 3,
+    y_min = -6,
+    z_max = 10,
+    z_min = -60,
+    level_set = 0
+}
+```
+
 
 
 库安装
 
 ```
 pip install numpy==1.19.5 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
+pip install configargparse -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
 
 
@@ -170,7 +231,7 @@ setting the “Collision Complexity” option in the details section of the stat
 
 Commercial Long-Range Aircraft
 
-飞机参数![img](.\images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
+飞机参数![img](.\Images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
 
 
 
