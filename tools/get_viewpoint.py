@@ -8,13 +8,10 @@
 @Date    ：2024/5/5 19:30
 To obtain viewpoints in Neusis dataset
 """
-import pickle
-import cv2
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
-from pklOperation import load_single_pkl
+from holoocean.tools.pklOperation import load_single_pkl
 
 
 '''data keys: 

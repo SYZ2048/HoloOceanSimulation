@@ -13,8 +13,8 @@ import os
 import matplotlib.pyplot as plt
 
 # 提供 `.pkl` 文件的路径
-# pickle_loc = "./neusis_14deg_planeFull/Data"
-# image_output_loc = "./neusis_14deg_planeFull/Image_14deg_planeFull/ExtractedImages"
+pickle_loc = "./collect_data/plane_vertical_raw/Data"
+image_output_loc = "./collect_data/plane_vertical_raw/ExtractedImages"
 # image_output_loc = "{}/ExtractedImages".format(dirpath)
 
 
@@ -78,16 +78,14 @@ def save_single_pkl(output_path, object_to_save):
     # 将字典保存为 .pkl 文件
     with open(output_path, 'wb') as f:  # 'wb' 模式以二进制写入
         pickle.dump(object_to_save, f)
-    # print(f"Dictionary has been successfully saved to {output_path}.")
+    print(f"Dictionary has been successfully saved to {output_path}.")
 
 
 if __name__ == '__main__':
-    file_path = "D:/code_python/HoloTest/holoocean/pillar_14degree/Data"
-    out_path = "D:/code_python/HoloTest/holoocean/pillar_14degree/Img_Sonar"
-    # file_path = "D:/code_python/HoloTest/holoocean/neusis_14deg_planeFull/Data"
-    # out_path = "D:/code_python/HoloTest/holoocean/neusis_14deg_planeFull/Image_14deg_planeFull/ExtractedImages"
-    load_img(file_path, out_path)
-# result = load_single_pkl(file_path)
-# output_path = "./test.pkl"
-# save_single_pkl(output_path, result)
-# print(load_single_pkl(output_path))
+    # folder_path = "./neusis_data/14deg_planeFull/Data"
+    # for filename in os.listdir(folder_path):
+    #     file_path = os.path.join(folder_path, filename)
+        # data = load_single_pkl(file_path)
+        # print(len(data))
+
+    load_img(pickle_loc,image_output_loc)
