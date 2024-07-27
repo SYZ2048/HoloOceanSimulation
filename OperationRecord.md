@@ -4,17 +4,22 @@
 
 #### 1. 找到一个量化的指标评估重建性能，论文中用的root mean square (RMS) and mean Hausdorff distance errors (all in meters)
 
-**mesh对比**：
+**mesh对比**：【需要人工手动选点】
 
 Nerf——放大十倍——旋转到平行——移动
 
 <img src=".\Images_Markdown\image-20240716102909256.png" alt="image-20240716102909256" style="zoom:25%;" />
 
-用meshlab比对mesh：手动选点进行了Align然后做比对，Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)
+用meshlab比对mesh：手动选点进行了Align然后做比对，
+
+​	Align参照[Aligning Models in Meshlab (youtube.com)](https://www.youtube.com/watch?v=30bJcj6yA4c)，选择工具栏的黄底“A”
+
+​	比对参照[Comparing Meshes in Meshlab (youtube.com)](https://www.youtube.com/watch?v=O_3O_BuPkyA)，Filters -> Sampling -> Hausdorff Distance
 
 结果
 
 ```
+800view
 Hausdorff Distance computed
 Sampled 3250 pts (rng: 0) on ExampleLevel_staticmesh.ply searched closest on 00300228_Mesh_DenoiseManual_10.ply
 min : 0.017456 max 544.781006 mean : 62.335575 RMS : 85.735085
@@ -23,13 +28,25 @@ min : 0.000002 max 0.054753 mean : 0.006265 RMS : 0.008617
 Applied filter Hausdorff Distance in 56 msec
 ```
 
+```
+400 view
+Hausdorff Distance computed
+Sampled 4829 pts (rng: 0) on ExampleLevel_staticmesh.ply searched closest on 00197408_view400.ply
+min : 0.016968 max 554.060120 mean : 70.487839 RMS : 96.742363
+Values w.r.t. BBox Diag (9949.872070)
+min : 0.000002 max 0.055685 mean : 0.007084 RMS : 0.009723 
+Applied filter Hausdorff Distance in 57 msec
+```
+
 
 
 #### 2. baseline效果改进
 
 **增加视角**：在之前建模中错误建模的地方总计增加了100个新的采样点——无法得到任何可靠重建
 
-**手动去噪**：手动去掉了周围的小mesh块
+**手动去噪**：使用meshlab手动去掉了周围的小mesh块
+
+
 
 #### 3. 做稀疏视角的网络
 
@@ -37,16 +54,23 @@ Applied filter Hausdorff Distance in 56 msec
 
 neusis 结构
 
-```
+```python
 \neusis\
-	run_sdf.py
+	run_sdf.py		定义了Class Runner，主要的训练函数，其中的loss = 
 	helpers.py		生成nerf网络的射线方向和弧线采样点
 	load_data.py
-	MLP.py			定义Network_S_Relu类
+	# MLP.py			定义Network_S_Relu类
+	# plot_mesh.py	
 	models\
 		embedder.py
-		fields.py		SDFNetwork
-		renderer.py		NeuSRenderer
+		fields.py		定义了SDFNetwork，RenderingNetwork，NeRF，SingleVarianceNetwork
+		renderer.py		定义了Class NeuSRenderer，由SDFNetwork，RenderingNetwork，SingleVarianceNetwork组成
+```
+
+损失函数
+
+```
+loss = intensity_error + eikonal_loss * self.igr_weight  + variation_regularization*self.variation_reg_weight
 ```
 
 <img src=".\Images_Markdown\neusis.jpg" alt="neusis" style="zoom:50%;" />
@@ -151,21 +175,29 @@ mesh {
 }
 ```
 
+200view: a95f1182e8-da9d2502
+
+```
+mesh { 
+    object_bbox_min = [-15, -6, -60]  
+    object_bbox_max = [15, 3, 0]
+    x_max = 15,
+    x_min = -15,
+    y_max = 3,
+    y_min = -6,
+    z_max = 0,
+    z_min = -60,
+    level_set = 0
+}
+```
 
 
-库安装
+
+库安装命令
 
 ```
 pip install numpy==1.19.5 -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-
-pip install configargparse -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 ```
-
-
-
-
-
-
 
 
 
