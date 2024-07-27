@@ -2,11 +2,11 @@ import holoocean
 import matplotlib.pyplot as plt
 import numpy as np
 
-from KeyboardControl import start_keyboard_listener, parse_keys, pressed_keys
-from SonarDisplayRealtime import SonarDisplay
+from tools.KeyboardControl import start_keyboard_listener, parse_keys, pressed_keys
+from tools.SonarDisplayRealtime import SonarDisplay
 
 #### GET SONAR CONFIG
-scenario = "Dam-HoveringImagingSonar"   # OpenWater-HoveringImagingSonar, PierHarbor-HoveringImagingSonar
+scenario = "OpenWater-HoveringImagingSonar"   # Dam-HoveringImagingSonar, OpenWater-HoveringImagingSonar, PierHarbor-HoveringImagingSonar
 config = holoocean.packagemanager.get_scenario(scenario)
 config = config['agents'][0]['sensors'][-1]["configuration"]
 
@@ -41,6 +41,9 @@ with holoocean.make(scenario) as env:  # scenario_cfg=config
         # print(state["LocationSensor"][0:3])
         # for key in state:
         #     print(key)
+        # if 'LocationSensor' in state:
+        #     p = state["LocationSensor"][0:3]
+        #     print("position: ", p)
 
         if 'ImagingSonar' in state:
             s = state['ImagingSonar']

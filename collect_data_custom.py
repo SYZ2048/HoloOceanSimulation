@@ -7,8 +7,8 @@ import os
 import shutil
 import json
 
-from KeyboardControl import start_keyboard_listener, parse_keys, pressed_keys
-from SonarDisplayRealtime import SonarDisplay
+from tools.KeyboardControl import start_keyboard_listener, parse_keys, pressed_keys
+from tools.SonarDisplayRealtime import SonarDisplay
 from pklOperation import save_single_pkl
 
 # remove Octrees
