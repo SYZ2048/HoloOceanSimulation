@@ -263,9 +263,9 @@ setting the “Collision Complexity” option in the details section of the stat
 
 Commercial Long-Range Aircraft
 
-飞机参数![img](.\Images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
+飞机参数
 
-
+![](.\Images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
 
 ### 数据采集
 
