@@ -265,7 +265,7 @@ Commercial Long-Range Aircraft
 
 飞机参数
 
-![](.\Images_Markdown\f97f480474fe8fd90a9feff45886e407.png)
+<img src=".\Images_Markdown\f97f480474fe8fd90a9feff45886e407.png" alt="image-f97f480474fe8fd90a9feff45886e407" style="zoom:50%;" />
 
 ### 数据采集
 
@@ -376,10 +376,6 @@ https://github.com/byu-holoocean/HoloOcean/issues/51
 custom环境更新后需要删除生成的Octrees
 
 Dell上的位置为C:\Users\xinruiy\Python_code\holoocean\engine\Octrees\ExampleLevel
-
-物体的设置如下图
-
-![3828036875-CollisionSettings](https://private-user-images.githubusercontent.com/91915043/328316472-13c626a8-c62b-4abd-bc97-6c4562e49140.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYyOTE0NzAsIm5iZiI6MTcxNjI5MTE3MCwicGF0aCI6Ii85MTkxNTA0My8zMjgzMTY0NzItMTNjNjI2YTgtYzYyYi00YWJkLWJjOTctNmM0NTYyZTQ5MTQwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MjElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTIxVDExMzI1MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTFkNTA4NDU3YWQ2NDkyZDY4ODIwMzljNzljOTIyY2JiYjgzZjhkYzFlY2JjOTgzZmM0MTk0YTMwZTVmMjk1MjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.6TPIQZVA44typDVtSxVtTAbdA9aAr0BxIVDrd08RWSY)
 
 
 
