@@ -1,0 +1,18 @@
+<!DOCTYPE MeshLabDocument>
+<MeshLabProject>
+ <MeshGroup>
+  <MLMesh filename="00197408_view400_Mesh_DenoisedManual_x300.ply" visible="1" label="00197408_view400_Mesh_DenoisedManual_x300.ply" idInFile="-1">
+   <MLMatrix44>
+0.999938 0.0102702 0.00418419 10.473 -0.00414281 -0.00404744 0.999983 3512.55 0.0102869 -0.999939 -0.00400465 462.586 0 0 0 1 
+</MLMatrix44>
+   <RenderingOption solidColor="192 192 192 255" pointSize="3" wireWidth="1" boxColor="234 234 234 255" wireColor="64 64 64 255" pointColor="252 233 79 255">100001000000000000000100000001011100000010100000000100111010000111001001</RenderingOption>
+  </MLMesh>
+  <MLMesh filename="ExampleLevel_staticmesh.ply" visible="1" label="ExampleLevel_staticmesh.ply" idInFile="-1">
+   <MLMatrix44>
+0.999997 -0.00237809 0.000976804 0.488125 0.00238065 0.999994 -0.00262621 1.62767 -0.000970552 0.00262853 0.999996 -1.15413 0 0 0 1 
+</MLMatrix44>
+   <RenderingOption solidColor="192 192 192 255" pointSize="3" wireWidth="1" boxColor="234 234 234 255" wireColor="64 64 64 255" pointColor="252 233 79 255">100001000000000000000100000001011100000010100000000100111010000111001001</RenderingOption>
+  </MLMesh>
+ </MeshGroup>
+ <RasterGroup/>
+</MeshLabProject>
